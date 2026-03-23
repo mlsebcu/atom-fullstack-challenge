@@ -18,6 +18,7 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { AuthService } from '../auth/services/auth.service';
 import { TaskService } from './services/task.service';
+import { AUTH_MESSAGES, ROUTE_PATHS, TASK_MESSAGES } from '../../shared/constants/app.constants';
 
 @Component({
   selector: 'app-tasks-page',
@@ -56,7 +57,7 @@ export class TasksPageComponent implements OnInit, OnDestroy {
       this.userId = user.id;
       this.loadTasks();
     } else {
-      this.showError('Usuario no autenticado');
+      this.showError(AUTH_MESSAGES.NOT_AUTHENTICATED);
     }
   }
 
@@ -67,7 +68,7 @@ export class TasksPageComponent implements OnInit, OnDestroy {
 
   loadTasks(): void {
     if (!this.userId) {
-      this.showError('ID de usuario no disponible');
+      this.showError(AUTH_MESSAGES.ID_NOT_AVAILABLE);
       return;
     }
 
@@ -85,14 +86,14 @@ export class TasksPageComponent implements OnInit, OnDestroy {
         },
         error: () => {
           this.loading = false;
-          this.showError('Error al cargar las tareas');
+          this.showError(TASK_MESSAGES.LOAD_ERROR);
         },
       });
   }
 
   onTaskSubmitted(formData: any): void {
     if (!this.userId) {
-      this.showError('ID de usuario no disponible');
+      this.showError(AUTH_MESSAGES.ID_NOT_AVAILABLE);
       return;
     }
 
@@ -109,10 +110,10 @@ export class TasksPageComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (newTask) => {
           this.tasks = [newTask, ...this.tasks];
-          this.showSuccess('Tarea creada exitosamente');
+          this.showSuccess(TASK_MESSAGES.CREATE_SUCCESS);
         },
         error: () => {
-          this.showError('Error al crear la tarea');
+          this.showError(TASK_MESSAGES.CREATE_ERROR);
         },
       });
   }
@@ -131,12 +132,12 @@ export class TasksPageComponent implements OnInit, OnDestroy {
           );
           const message =
             event.status === 'completed'
-              ? 'Tarea marcada como completada'
-              : 'Tarea marcada como pendiente';
+              ? TASK_MESSAGES.COMPLETED
+              : TASK_MESSAGES.PENDING;
           this.showSuccess(message);
         },
         error: () => {
-          this.showError('Error al actualizar la tarea');
+          this.showError(TASK_MESSAGES.UPDATE_ERROR);
         },
       });
   }
@@ -148,10 +149,10 @@ export class TasksPageComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.tasks = this.tasks.filter((task) => task.id !== taskId);
-          this.showSuccess('Tarea eliminada exitosamente');
+          this.showSuccess(TASK_MESSAGES.DELETED_SUCCESS);
         },
         error: () => {
-          this.showError('Error al eliminar la tarea');
+          this.showError(TASK_MESSAGES.DELETED_ERROR);
         },
       });
   }
@@ -159,7 +160,7 @@ export class TasksPageComponent implements OnInit, OnDestroy {
   onTaskEdited(taskId: string): void {
     const task = this.tasks.find((t) => t.id === taskId);
     if (!task) {
-      this.showError('Tarea no encontrada');
+      this.showError(TASK_MESSAGES.NOT_FOUND);
       return;
     }
 
@@ -195,18 +196,18 @@ export class TasksPageComponent implements OnInit, OnDestroy {
               this.tasks = this.tasks.map((t) =>
                 t.id === taskId ? updatedTask : t,
               );
-              this.showSuccess('Tarea actualizada exitosamente');
+              this.showSuccess(TASK_MESSAGES.UPDATE_SUCCESS);
               dialogRef.close();
             },
             error: () => {
-              this.showError('Error al actualizar la tarea');
+              this.showError(TASK_MESSAGES.UPDATE_ERROR);
             },
           });
       });
   }
 
   onAbout(): void {
-    this.router.navigate(['/about']);
+    this.router.navigate([ROUTE_PATHS.ABOUT]);
   }
 
   onLogout(): void {

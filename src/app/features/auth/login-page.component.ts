@@ -8,6 +8,7 @@ import {
   LoginFormData,
 } from './components/login-form/login-form.component';
 import { AuthService } from './services/auth.service';
+import { AUTH_MESSAGES, NOTIFICATION_DURATION } from '../../shared/constants/app.constants';
 
 @Component({
   selector: 'app-login-page',
@@ -61,11 +62,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         error: (error) => {
-          // Si el usuario no existe (404), mostrar diálogo de creación
+          // Si el usuario no existe, mostrar diálogo de creación
           if (error?.status === 404 || error?.statusCode === 404) {
             this.loginFormComponent?.openCreateUserDialog(email);
           } else {
-            this.showError(error?.message || 'Error al iniciar sesión');
+            this.showError(error?.message || AUTH_MESSAGES.LOGIN_ERROR);
           }
         },
       });
@@ -91,21 +92,21 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           this.showSuccess(`Cuenta creada exitosamente para ${email}`);
         },
         error: (error) => {
-          this.showError(error?.message || 'Error al crear la cuenta');
+          this.showError(error?.message || AUTH_MESSAGES.CREATE_USER_ERROR);
         },
       });
   }
 
   private showError(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 5000,
+      duration: NOTIFICATION_DURATION.MEDIUM,
       panelClass: ['error-snackbar'],
     });
   }
 
   private showSuccess(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 3000,
+      duration: NOTIFICATION_DURATION.SHORT,
       panelClass: ['success-snackbar'],
     });
   }

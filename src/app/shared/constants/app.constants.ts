@@ -10,19 +10,6 @@ export const STORAGE_KEYS = {
   USER_EMAIL: 'user_email',
 } as const;
 
-// Constantes de Status Code de HTTP
-export const HTTP_STATUS = {
-  OK: 200,
-  CREATED: 201,
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  CONFLICT: 409,
-  INTERNAL_SERVER_ERROR: 500,
-  SERVICE_UNAVAILABLE: 503,
-} as const;
-
 // Constantes de mensajes de error
 export const ERROR_MESSAGES = {
   INVALID_EMAIL: 'Formato inválido para el correo electrónico',
@@ -30,31 +17,34 @@ export const ERROR_MESSAGES = {
   UNAUTHORIZED: 'No estás autorizado',
   NETWORK_ERROR: 'Error de red. Por favor, verifica tu conexión',
   SERVER_ERROR: 'Error del servidor. Por favor, inténtalo de nuevo más tarde',
-  TASK_NOT_FOUND: 'Tarea no encontrada',
   INVALID_CREDENTIALS: 'Credenciales inválidas',
   SESSION_EXPIRED: 'Tu sesión ha expirado. Por favor, inicia sesión de nuevo',
   INVALID_REQUEST: 'Solicitud inválida. Por favor, verifica los datos ingresados',
 } as const;
 
-// Constantes de mensajes de respuestas exitosas
-export const SUCCESS_MESSAGES = {
-  LOGIN_SUCCESS: 'Bienvenido de nuevo!',
-  ACCOUNT_CREATED: 'Cuenta creada con éxito',
-  TASK_CREATED: 'Tarea creada correctamente',
-  TASK_UPDATED: 'Tarea actualizada correctamente',
-  TASK_DELETED: 'Tarea eliminada correctamente',
-  TASK_COMPLETED: 'Tarea marcada como completada',
-} as const;
+// Constantes Autenticación
+export const AUTH_MESSAGES = {
+  NOT_AUTHENTICATED: 'Usuario no autenticado',
+  ID_NOT_AVAILABLE: 'ID de usuario no disponible',
+  LOGIN_ERROR: 'Error al iniciar sesión',
+  CREATE_USER_ERROR: 'Error al crear la cuenta'
+}
 
-// Validaciones y reglas
-export const VALIDATION_RULES = {
-  EMAIL_PATTERN: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  TASK_TITLE_MIN_LENGTH: 1,
-  TASK_TITLE_MAX_LENGTH: 255,
-  TASK_DESCRIPTION_MAX_LENGTH: 1000,
-} as const;
+// Constantes Tareas
+export const TASK_MESSAGES = {
+  NOT_FOUND: 'Tarea no encontrada',
+  DELETED_SUCCESS: 'Tarea eliminada exitosamente',
+  DELETED_ERROR: 'Error al eliminar la tarea',
+  CREATE_SUCCESS: 'Tarea creada exitosamente',
+  CREATE_ERROR: 'Error al crear la tarea',
+  UPDATE_SUCCESS: 'Tarea actualizada exitosamente',
+  UPDATE_ERROR: 'Error al actualizar la tarea',
+  LOAD_ERROR: 'Error al cargar las tareas',
+  COMPLETED: 'Tarea marcada como completada',
+  PENDING: 'Tarea marcada como pendiente',
+}
 
-// Toast/Snackbar Durations (ms)
+// Duraciones para notificaciones (en milisegundos)
 export const NOTIFICATION_DURATION = {
   SHORT: 3000,
   MEDIUM: 5000,
@@ -63,9 +53,8 @@ export const NOTIFICATION_DURATION = {
 
 // Constantes de rutas de la aplicación
 export const ROUTE_PATHS = {
-  ROOT: '',
   LOGIN: '/login',
   TASKS: '/tasks',
   HOME: '/home',
-  WILDCARD: '**',
+  ABOUT: '/about',
 } as const;

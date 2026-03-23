@@ -12,7 +12,7 @@ export class ErrorHandler {
     }
 
     if (error.status === 404) {
-      return ERROR_MESSAGES.TASK_NOT_FOUND;
+      return error.error?.message || ERROR_MESSAGES.USER_NOT_FOUND;
     }
 
     if (error.status >= 500) {

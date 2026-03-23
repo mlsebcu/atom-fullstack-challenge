@@ -8,6 +8,7 @@ import { StorageManager } from '../../../shared/utils/storage.manager';
 import { ErrorHandler } from '../../../shared/utils/error.handler';
 import { User, AuthState } from '../models/user.model';
 import { ApiResponse } from '../../../core/interfaces/api.interface';
+import { ROUTE_PATHS } from '../../../shared/constants/app.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -111,7 +112,7 @@ export class AuthService {
       loading: false,
       error: null,
     });
-    this.router.navigate(['/login']);
+    this.router.navigate([ROUTE_PATHS.LOGIN]);
   }
 
   private setUser(user: User): void {
@@ -123,7 +124,7 @@ export class AuthService {
       error: null,
     });
 
-    this.router.navigate(['/tasks']);
+    this.router.navigate([ROUTE_PATHS.TASKS]);
   }
 
   private updateAuthState(partial: Partial<AuthState>): void {
