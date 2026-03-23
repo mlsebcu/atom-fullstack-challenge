@@ -1,36 +1,69 @@
-# ATOM FE CHALLENGE TEMPLATE - ANGULAR
+# ATOM Task Manager - FullStack Challenge
 
-Este proyecto es una plantilla con lo necesario para comenzar a desarrollar el front-end de la aplicación de la prueba técnica de Atom. Se base en Angular con la versión 17.3.6.
-Se ha realizado la instalación y configuración de varias dependencias necesarias para el desarrollo de la aplicación, como por ejemplo: Angular Material.
+Este proyecto es la solución al desafío técnico para la posición de Sr Full Stack Developer. Se trata de una aplicación de gestión de tareas (To-Do List) diseñada bajo principios de arquitectura limpia, modularidad y las mejores prácticas del ecosistema Angular moderno.
 
-## Instrucciones
-Siéntete libre de clonar este repositorio y utilizarlo como base para el desarrollo de la aplicación. Sigue las indicates de la prueba técnica para completar la aplicación y desarrolla como más te sientas cómodo.
+## Vista General
 
-De igual manera puedes documentar dentro de este archivo todo lo que deseas contar sobre tu desarrollo, como por ejemplo, decisiones de diseño, problemas encontrados, etc.
+La aplicación permite a los usuarios gestionar sus tareas diarias de forma eficiente, con un flujo de autenticación basado en correo electrónico y una interfaz intuitiva y responsiva.
 
-## Comentarios sobre el desarrollo
-...
+### Características Principales
+- Autenticación: Inicio de sesión solo con correo. Si el usuario no existe, se ofrece la creación de la cuenta.
+- Gestión de Tareas (CRUD): Creación, lectura, edición y eliminación de tareas.
+- Estado de Tareas: Marcado de tareas como completadas o pendientes mediante casillas de verificación.
+- Ordenamiento Automático: Las tareas se presentan ordenadas por su fecha de creación.
+- Diseño Responsive: Interfaz adaptada a dispositivos móviles, tablets y escritorio.
 
-## Development server
+## Arquitectura y Decisiones de Diseño
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para este challenge, se implementó una arquitectura modular basada en Core, Shared y Features, facilitando el mantenimiento y la escalabilidad del proyecto.
 
-## Code scaffolding
+### Estructura del Proyecto
+- Core (/src/app/core): Contiene el motor de la aplicación. Servicios globales (HTTP, Auth), interfaces fundamentales y los Guards de navegación.
+- Shared (/src/app/shared): Componentes, constantes y utilitarios reutilizables para evitar duplicación de código.
+- Features (/src/app/features): Cada módulo funcional (Auth, Tasks) está encapsulado siguiendo el principio de responsabilidad única.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Decisiones Técnicas Destacadas
+- Angular 17 + Standalone Components: Uso de las últimas funcionalidades para eliminar módulos pesados, optimizando el bundle y la claridad del código. Adicionalmente, por temas de tiempos, se decidió reutilizar el template incluido en el pdf de ATOM.
+- Programación Reactiva (RxJS): Manejo del estado y comunicación asíncrona mediante Observables.
+- Carga Perezosa (Lazy Loading): Rutas principales cargadas bajo demanda para mejorar el rendimiento inicial.
+- Manejo Centralizado de Errores: Servicio HTTP robusto con gestión de errores para mejorar la resiliencia.
 
-## Build
+## Stack Tecnológico
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Frontend: Angular 17, RxJS, Angular Material, SCSS.
+- Backend (API): Node.js con Express y TypeScript.
+- Infraestructura: Firebase (Hosting, Cloud Functions y Firestore).
 
-## Running unit tests
+## Configuración y Ejecución
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Requisitos Previos
+- Node.js (v18.x o superior)
+- Angular CLI (v17.x)
 
-## Running end-to-end tests
+### Instalación Local
+1. Clonar el repositorio.
+   ```bash
+   git clone https://github.com/mlsebcu/atom-fullstack-challenge.git
+   ```
+2. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+3. Ejecutar el servidor de desarrollo:
+   ```bash
+   ng serve
+   ```
+4. Abrir en el navegador: http://localhost:4200/
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Despliegue
+El proyecto está configurado para despliegue en Firebase:
+```bash
+ng build
+firebase deploy
+```
 
-## Further help
+## Comentarios del Desarrollador
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+El desarrollo de este challenge se enfocó en un equilibrio entre funcionalidad y calidad técnica. Más allá de cumplir los requisitos, se estableció una base sólida que demuestra una estructura escalable, priorizando la legibilidad, el tipado fuerte y la separación de responsabilidades.
+
+La integración con Firebase Firestore garantiza la persistencia y respuesta en tiempo real, mientras que Angular Material proporciona una experiencia de usuario consistente y profesional.
