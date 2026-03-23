@@ -1,0 +1,91 @@
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  mat-card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  mat-card-content {
+    padding: 1.5rem;
+  }
+
+  mat-card-actions {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dialog-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 400px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+  h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0 0 1.5rem 0;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.5;
+  }
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+
+  button {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-form {
+    padding: 1rem;
+  }
+
+  .form-card {
+    max-width: 100%;
+  }
+
+  .dialog-overlay {
+    padding: 1rem;
+  }
+
+  .dialog-content {
+    max-width: 100%;
+  }
+}

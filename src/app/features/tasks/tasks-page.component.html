@@ -1,0 +1,49 @@
+<div class="tasks-page">
+  <!-- Cabecera -->
+  <mat-toolbar color="primary" class="app-toolbar">
+    <h1 class="toolbar-title">Mis tareas</h1>
+    <div class="toolbar-actions">
+      <button
+        mat-icon-button
+        (click)="loadTasks()"
+        aria-label="Refresh tasks"
+        title="Recargar"
+      >
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="onAbout()"
+        aria-label="About ATOM Challenge"
+        title="Acerca del reto ATOM"
+      >
+        <mat-icon>info</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="onLogout()"
+        aria-label="Logout"
+        title="Cerrar sesión"
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="tasks-container">
+    <div class="tasks-content">
+      <!-- Formulario para ingresar tareas -->
+      <app-task-form 
+        (taskSubmitted)="onTaskSubmitted($event)">
+      </app-task-form>
+
+      <app-task-list
+        [tasks]="tasks"
+        [loading]="loading"
+        (taskToggled)="onTaskToggled($event)"
+        (taskEdited)="onTaskEdited($event)"
+        (taskDeleted)="onTaskDeleted($event)"
+      ></app-task-list>
+    </div>
+  </div>
+</div>

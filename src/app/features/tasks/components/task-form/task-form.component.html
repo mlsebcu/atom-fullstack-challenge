@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="task-form">
+  <div class="form-group">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título de la tarea</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="title"
+        placeholder="Ingresa el título de la tarea"
+        required
+        maxlength="255"
+        aria-label="Task title"
+      />
+      @if (title?.hasError('required') && title?.touched) {
+        <mat-error>El título es requerido</mat-error>
+      }
+      @if (title?.hasError('maxlength') && title?.touched) {
+        <mat-error>El título no debe exceder 255 caracteres</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción de la tarea</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Ingresa la descripción de la tarea (opcional)"
+        rows="3"
+        maxlength="1000"
+        aria-label="Descripción de la tarea"
+      ></textarea>
+      @if (description?.hasError('maxlength') && description?.touched) {
+        <mat-error>La descripción no debe exceder 1000 caracteres</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="form-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+      [attr.aria-label]="isEditMode ? 'Actualizar tarea' : 'Agregar tarea'"
+    >
+      <mat-icon>{{ isEditMode ? 'edit' : 'add' }}</mat-icon>
+      {{ isEditMode ? 'Actualizar Tarea' : 'Agregar Tarea' }}
+    </button>
+    <button
+      mat-stroked-button
+      type="button"
+      (click)="onCancel()"
+      aria-label="Cancel"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>

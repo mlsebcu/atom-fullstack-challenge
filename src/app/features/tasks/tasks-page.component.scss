@@ -1,0 +1,61 @@
+.tasks-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.app-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    color: white;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.tasks-container {
+  flex: 1;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+.tasks-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .tasks-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .app-toolbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+
+    .toolbar-title {
+      font-size: 1.25rem;
+    }
+  }
+}

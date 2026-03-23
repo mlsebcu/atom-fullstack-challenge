@@ -1,0 +1,7 @@
+<div class="login-page-container">
+  <app-login-form
+    [loading]="isLoading"
+    (submit)="onLoginSubmit($event)"
+    (createUser)="onCreateUser($event)"
+  ></app-login-form>
+</div>
