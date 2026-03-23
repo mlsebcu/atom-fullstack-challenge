@@ -1,0 +1,49 @@
+@if (task) {
+  <mat-card class="task-card" [class.completed]="isCompleted()">
+    <mat-card-content class="task-content">
+      <div class="checkbox-section">
+        <mat-checkbox
+          [checked]="isCompleted()"
+          (change)="onToggleStatus($event.checked)"
+          aria-label="Marcar tarea como completada"
+        ></mat-checkbox>
+      </div>
+
+      <div class="task-details" [class.task-completed]="isCompleted()">
+        <h3 class="task-title">{{ task.title }}</h3>
+        @if (task.description) {
+          <p class="task-description">{{ task.description }}</p>
+        }
+        <div class="task-meta">
+          <span class="task-date">{{ getFormattedDate(task.createdAt) }}</span>
+          @if (isCompleted()) {
+            <span class="task-status completed">Completada</span>
+          } @else {
+            <span class="task-status pending">Pendiente</span>
+          }
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button
+          mat-icon-button
+          (click)="onEdit()"
+          [disabled]="isCompleted()"
+          aria-label="Editar tarea"
+          class="edit-btn"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="onDelete()"
+          aria-label="Eliminar tarea"
+          class="delete-btn"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}

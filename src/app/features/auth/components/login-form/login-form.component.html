@@ -1,0 +1,74 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>Iniciar Sesión</mat-card-title>
+      <mat-card-subtitle
+        >Ingresa su correo para acceder a sus tareas</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-label>Correo electrónico</mat-label>
+      <mat-form-field appearance="outline" class="full-width">
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="usuario@atom.com"
+          [disabled]="loading"
+          required
+          aria-label="Correo electrónico"
+        />
+        @if (email?.hasError("required") && email?.touched) {
+          <mat-error>El correo electrónico es requerido</mat-error>
+        }
+        @if (email?.hasError("email") && email?.touched) {
+          <mat-error>Ingrese un correo electrónico válido</mat-error>
+        }
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width"
+        [disabled]="loading || form.invalid"
+      >
+        @if (loading) {
+          <mat-spinner diameter="20"></mat-spinner>
+          Iniciando sesión...
+        } @else {
+          Iniciar sesión
+        }
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+@if (showCreateUserDialog) {
+  <div class="dialog-overlay" role="dialog" aria-labelledby="dialog-title">
+    <div class="dialog-content">
+      <h2 id="dialog-title">Crear cuenta Nueva</h2>
+      <p>
+        Este correo electrónico no existe en nuestro sistema. ¿Desea crear una
+        cuenta nueva con el correo
+        <strong>{{ pendingEmail }}</strong
+        >?
+      </p>
+      <div class="dialog-actions">
+        <button mat-stroked-button (click)="onCreateUserCancel()">
+          Cancelar
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onCreateUserConfirm()"
+        >
+          Crear cuenta
+        </button>
+      </div>
+    </div>
+  </div>
+}
